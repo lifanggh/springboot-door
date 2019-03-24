@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou100.mapper.DingDanMapper">
+
+   <select id="select" parameterType="java.lang.Integer" resultType="com.zhiyou100.pojo.goods">
+       select * from goods where gid=#{gid}
+   </select>
+    <update id="update2" parameterType="com.zhiyou100.pojo.goods">
+        UPDATE goods set gnum=#{gnum} where gid=#{gid}
+    </update>
+    <!--添加订单-->
+    <select id="addDingdan" parameterType="com.zhiyou100.pojo.Dingdan" >
+     INSERT  into dingdan values(#{did},#{dgid},#{duid},#{dtime},1,null,#{type},#{dmany})
+    </select>
+
+    <!--查询订单-->
+    <select id="getDingdan" resultType="com.zhiyou100.pojo.queryall">
+        SELECT * from queryall where did=#{id}
+    </select>
+</mapper>

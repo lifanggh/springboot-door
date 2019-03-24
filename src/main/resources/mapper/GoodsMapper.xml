@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou100.mapper.GoodsMapper">
+
+    <!--查询-->
+<select id="getAll" resultType="com.zhiyou100.pojo.goods">
+    SELECT  * from goods where gtype=1
+</select>
+    <!--查询所有-->
+    <select id="getAllM" resultType="com.zhiyou100.pojo.queryall">
+ SELECT  * from queryall where TYPE =1
+    </select>
+
+    <!--删除 修改状态-->
+    <update id="deleteupdat" parameterType="java.lang.Integer">
+        UPDATE dingdan set type=0 where did=#{gid}
+    </update>
+
+    <!--修改-->
+    <update id="update" parameterType="com.zhiyou100.pojo.goods">
+        UPDATE goods set gname=#{gname},gprice=#{gprice},gnum=#{gnum},gkind=#{gkind},gpin=#{gpin}where gid=#{gid}
+    </update>
+    <!--添加-->
+    <insert id="addGood" parameterType="com.zhiyou100.pojo.goods">
+     INSERT INTO  goods VALUES (#{gid},#{gname},#{gprice},#{gnum},#{gkind},#{gpin},1)
+
+    </insert>
+
+    <select id="getUser" parameterType="java.lang.String">
+        select * from user where name=#{name}
+    </select>
+
+</mapper>

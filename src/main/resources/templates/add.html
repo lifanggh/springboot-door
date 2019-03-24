@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+</head>
+<style>
+    input{
+        width: 70px;
+    }
+
+</style>
+<body>
+<div >
+    <table border="0.5" >
+
+        <tr>
+            <th>商品编号</th>
+            <th>商品</th>
+            <th>商品价格</th>
+            <th>商品数量</th>
+            <th>商品种类</th>
+            <th>商品品牌</th>
+            <th colspan="2">操作</th>
+        </tr>
+        <tr>
+            <form id="form1">
+                <td><input name="gid" type="hidden">xxx</td>
+
+                <td><input name="gname"></td>
+                <td><input name="gprice"></td>
+                <td><input name="gnum"></td>
+                <td><input name="gkind"></td>
+                <td><input name="gpin"></td>
+
+                <td><input type="button" id="buttonon" value="添加"></td>
+                <td><input type="button" id="cc" value="重置"></td>
+            </form>
+        </tr>
+
+
+    </table>
+    </div>
+
+    <script>
+        $("#buttonon").click(function () {
+            $.ajax({
+                url: "add2.do",
+                data: $("#form1").serialize(),
+                type:"post",
+                dataType:"json",
+               success:function(data){
+                    if (data=1){
+                        alert("添加成功");
+                        window.location.href="/getall.do";
+                    }else{
+                        alert("请重新添加");
+                    }
+               }
+            })
+        })
+
+    </script>
+</body>
+</html>

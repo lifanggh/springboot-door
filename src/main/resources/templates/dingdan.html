@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <hr>
+    <table border="0.5">
+        <caption>商品信息</caption>
+        
+        <tr>
+            <th>订单编号</th>
+            <th>用户编号</th>
+            <th>用户名</th>
+            <th>商品名</th>
+            <th>价钱</th>
+            <th>订单时间</th>
+            <th colspan="2">操作</th>
+        </tr>
+        <tr th:each="ss:${all}">
+            <form th:action="@{/update.do}" th:method="post" th:object="${goods}">
+                <td><input name="gid" th:value="${ss.did}"></td>
+                <td><input name="gname"  th:value="${ss.duid}"></td>
+                <td><input name="gprice" th:value="${ss.name}"></td>
+                <td><input name="gnum" th:value="${ss.gname}"></td>
+                <td ><input name="gkind" th:value="${ss.dmany}"></td>
+                <td><input name="gpin" th:value="${ss.dtime}"></td>
+                <td ><input type="submit" value="修改"/></td>
+                <td><a href="#" th:href="@{/delete.do(gid=${ss.gid})}">删除</a></td>
+            </form>
+        </tr>
+
+
+    </table>
+</div>
+</body>
+</html>

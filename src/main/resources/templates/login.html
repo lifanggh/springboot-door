@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<div align="center">
+<form id="form2" >
+    <input type="text" name="name" placeholder="用户名"><br>
+    <input type="password" name="pass" placeholder="密码">
+    <input type="button" value="登录" id="date">
+</form>
+</div>
+
+
+<script>
+    $("#date").click(function (){
+        $.ajax({
+            url:"login.do",
+            type:"post",
+            data:$("#form2").serialize(),
+            dateType:"json",
+            success:function (ee) {
+                if (ee.ms){
+                 location.href="/getall.do";
+                }else {
+                    alert(ee.msg);
+                }
+            }
+        })
+    })
+
+
+</script>
+</body>
+</html>

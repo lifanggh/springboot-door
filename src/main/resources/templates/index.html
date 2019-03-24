@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+ <style>
+     input{
+          width: 60px;
+      }
+
+ </style>
+<body>
+<h1>你好</h1>
+<a th:href="@{/getall.do}"><b>查看商品</b></a>
+<a th:href="@{/all.do}"><b>查看所有商品</b></a>
+<a  onclick="on()"><b>查看所有商品</b></a>
+
+
+   <div align="center">
+       <hr>
+       <table border="0.5">
+           <caption>商品信息</caption>
+           <td><a href="#" th:href="@{/add.do}">添加</a></td>
+           <tr>
+                <th>商品编号</th>
+               <th>商品</th>
+               <th>商品价格</th>
+               <th>商品数量</th>
+               <th>商品种类</th>
+               <th>商品品牌</th>
+               <th>操作</th>
+           </tr>
+           <tr th:each="ss:${goodlist}">
+               <form th:action="@{/update.do}" th:method="post" th:object="${goods}">
+             <td><input name="gid" th:value="${ss.gid}"></td>
+               <td><input name="gname"  th:value="${ss.gname}"></td>
+               <td><input name="gprice" th:value="${ss.gprice}"></td>
+               <td><input name="gnum" th:value="${ss.gnum}"></td>
+               <td ><input name="gkind" th:value="${ss.gkind}"></td>
+               <td><input name="gpin" th:value="${ss.gpin}"></td>
+               <td ><input type="submit" value="修改"/></td>
+                   <td><a href="#" th:href="@{/shopping.do(gid=${ss.gid})}">购买</a></td>
+               <td><a href="#" th:href="@{/delete.do(gid=${ss.gid})}">删除</a></td>
+               </form>
+           </tr>
+
+
+       </table>
+   </div>
+
+
+<div align="center">
+    <hr>
+    <p>所有信息</p>
+    <form>
+    <table >
+
+        <tr>
+            <th>商品编号</th>
+            <th>用户编号</th>
+            <th>用户</th>
+            <th>商品</th>
+            <th>商品价格</th>
+            <th>商品数量</th>
+            <th>商品种类</th>
+            <th>商品品牌</th>
+
+            <th>订单编号</th>
+
+            <th>总价</th>
+            <th>优惠</th>
+            <th>时间</th>
+             <th colspan="2">操作</th>
+        </tr>
+
+        <tr th:each="all:${ALLlist}">
+
+         <td>  <input th:value="${all.gid}" ></td>
+            <td> <input th:value="${all.id}"></td>
+            <td>   <input th:value="${all.name}"/></td>
+            <td>   <input th:value="${all.gname}"/></td>
+            <td>   <input th:value="${all.gprice}"/></td>
+            <td>  <input th:value="${all.gnum}"/></td>
+            <td>   <input th:value="${all.gkind}"/></td>
+            <td>   <input th:value="${all.gpin}"/></td>
+            <td>   <input th:value="${all.did}"/></td>
+            <td>  <input th:value="${all.dnum}"/></td>
+            <td>  <input th:value="${all.dyh}"/></td>
+            <td>   <input th:value="${all.dtime}"/></td>
+            <td><a href="#" th:href="@{/delete.do(gid=${all.gid})}">删除</a></td>
+
+        </tr>
+
+    </table>
+    </form>
+<hr>
+</div>
+<script>
+    function on(){
+        $.ajax({
+            url:"all.do",
+        })
+    }
+
+
+</script>
+</body>
+</html>
